@@ -30,9 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                     .loginProcessingUrl("/login")
-                    .usernameParameter("user_id")
+                    .usernameParameter("user_email")
                     .passwordParameter("user_pw")
-                    .defaultSuccessUrl("https://becomeceo.net");
+                    .defaultSuccessUrl("http://localhost:8086/swagger-ui.html");
 
     }
 }

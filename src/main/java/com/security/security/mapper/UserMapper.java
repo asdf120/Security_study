@@ -10,5 +10,5 @@ public interface UserMapper {
 
     int signup_user(UserVO userVO) throws Exception;
 
-    UserVO check_user_id(String user_id) throws Exception;
+    UserVO check_user_id(String user_email) throws Exception;
 }

@@ -24,12 +24,13 @@ public class PrincipalDetailsService implements UserDetailsService {
         UserVO userVO = new UserVO();
         try{
             userVO = userMapper.check_user_id(username);
+            System.out.println("service principal password 27line : " + userVO);
             if (userVO != null) {
                 return new PrincipalDetails(userVO);
             }
         }catch (Exception e){
 
         }
-        return null;
+        return new PrincipalDetails(userVO);
     }
 }

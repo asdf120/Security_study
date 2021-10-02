@@ -4,14 +4,14 @@
 
     <insert id="signup_user" parameterType="UserVO">
       INSERT INTO user
-             (user_id, user_pw, user_create_date)
+             (user_email, user_pw, user_name, user_phone, user_create_date)
       VALUES
-            (#{user_id}, #{user_pw}, NOW())
+            (#{user_email}, #{user_pw}, #{user_name}, #{user_phone}, NOW())
     </insert>
     
     <select id="check_user_id" parameterType="String" resultType="UserVO">
       SELECT *
       FROM user
-      WHERE user_id = #{user_id}
+      WHERE user_email = #{user_email}
     </select>
 </mapper>
