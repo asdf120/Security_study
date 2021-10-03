@@ -1,5 +1,7 @@
 package com.security.security.config;
 
+import com.security.security.Service.oauth.PrincipalOauth2UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private PrincipalOauth2UserService principalOauth2UserService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
@@ -32,7 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     .usernameParameter("user_email")
                     .passwordParameter("user_pw")
-                    .defaultSuccessUrl("http://localhost:8086/swagger-ui.html");
-
+                    .defaultSuccessUrl("http://localhost:8086/swagger-ui.html")
+                .and()
+                .oauth2Login()
+                .defaultSuccessUrl("/social-success")
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);	// oauth2 로그인에 성공하면, 유저 데이터를 가지고 우리가 생성한
     }
 }
