@@ -8,5 +8,5 @@ public interface UserMapper {
 
     int signUpUser(User user) throws Exception;
 
-    User check_user_id(String user_email) throws Exception;
+    User checkUserId(String userEmail) throws Exception;
 }

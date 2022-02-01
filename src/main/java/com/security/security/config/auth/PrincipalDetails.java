@@ -36,17 +36,6 @@ public class PrincipalDetails implements UserDetails {
         return null;
     }
 
-//    @Override
-//    public String getPassword() {
-//        return user.getUser_pw();
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return String.valueOf(user.getUser_id());
-//    }
-
-
     @Override
     public String getPassword() {
         return user.getUserPw();
@@ -54,7 +43,7 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getUsername();
+        return user.getUserName();
     }
 
     // 계정만료

@@ -9,7 +9,7 @@
             (#{userEmail}, #{userPw}, #{userName}, #{userPhone}, NOW())
     </insert>
     
-    <select id="check_user_id" parameterType="String" resultType="User">
+    <select id="checkUserId" parameterType="String" resultType="User">
       SELECT *
       FROM user
       WHERE user_email = #{userEmail}
