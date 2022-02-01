@@ -2,7 +2,7 @@ package com.security.security.config.auth;
 
 
 import com.security.security.mapper.UserMapper;
-import com.security.security.vo.UserVO;
+import com.security.security.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,16 +21,16 @@ public class PrincipalDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("service principal 23line : " + username);
-        UserVO userVO = new UserVO();
+        User user = new User();
         try{
-            userVO = userMapper.check_user_id(username);
-            System.out.println("service principal password 27line : " + userVO);
-            if (userVO != null) {
-                return new PrincipalDetails(userVO);
+            user = userMapper.check_user_id(username);
+            System.out.println("service principal password 27line : " + user);
+            if (user != null) {
+                return new PrincipalDetails(user);
             }
         }catch (Exception e){
 
         }
-        return new PrincipalDetails(userVO);
+        return new PrincipalDetails(user);
     }
 }

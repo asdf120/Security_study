@@ -1,14 +1,12 @@
 package com.security.security.mapper;
 
-import com.security.security.vo.UserVO;
+import com.security.security.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository
 public interface UserMapper {
 
-    int signup_user(UserVO userVO) throws Exception;
+    int signUpUser(User user) throws Exception;
 
-    UserVO check_user_id(String user_email) throws Exception;
+    User check_user_id(String user_email) throws Exception;
 }

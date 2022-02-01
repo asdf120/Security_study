@@ -8,7 +8,7 @@ package com.security.security.config.auth;
 
 // Security Session => Authentication => UserDetails(PrincipalDetails)
 
-import com.security.security.vo.UserVO;
+import com.security.security.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,10 +17,10 @@ import java.util.Collection;
 
 public class PrincipalDetails implements UserDetails {
 
-    private UserVO userVO; // 컴포지션
+    private User user; // 컴포지션
 
-    public PrincipalDetails(UserVO userVO){
-        this.userVO = userVO;
+    public PrincipalDetails(User user){
+        this.user = user;
     }
 
     // 해당 유저의 권한을 리턴
@@ -36,14 +36,25 @@ public class PrincipalDetails implements UserDetails {
         return null;
     }
 
+//    @Override
+//    public String getPassword() {
+//        return user.getUser_pw();
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return String.valueOf(user.getUser_id());
+//    }
+
+
     @Override
     public String getPassword() {
-        return userVO.getUser_pw();
+        return user.getUserPw();
     }
 
     @Override
     public String getUsername() {
-        return String.valueOf(userVO.getUser_id());
+        return getUsername();
     }
 
     // 계정만료
