@@ -29,6 +29,6 @@ public class PrincipalDetailsService implements UserDetailsService {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new PrincipalDetails(user);
+        return user;
     }
 }
