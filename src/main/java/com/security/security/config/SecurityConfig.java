@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     .usernameParameter("userEmail")
                     .passwordParameter("userPw")
-//                    .defaultSuccessUrl("http://localhost:8086/swagger-ui.html")
+                    .defaultSuccessUrl("/")
                 .and()
                 .oauth2Login()
                 .defaultSuccessUrl("/social-success")

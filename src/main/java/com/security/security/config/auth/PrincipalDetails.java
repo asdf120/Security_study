@@ -1,5 +1,12 @@
 package com.security.security.config.auth;
 
+import com.security.security.entity.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 // 시큐리티가 /login을 주소 요청이 오면 낚아채서 로그인을 진행
 // 로그인을 진행이 완료가 되면 시큐리티 session을 만들어줌. (Security ContextHolder)
 // 오브젝트 => Authentication 타입의 객체
@@ -8,18 +15,11 @@ package com.security.security.config.auth;
 
 // Security Session => Authentication => UserDetails(PrincipalDetails)
 
-import com.security.security.entity.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class PrincipalDetails implements UserDetails {
 
     private User user; // 컴포지션
 
-    public PrincipalDetails(User user){
+    public PrincipalDetails(User user) {
         this.user = user;
     }
 
@@ -30,10 +30,10 @@ public class PrincipalDetails implements UserDetails {
         collection.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return null;
+                return user.getUserRole();
             }
         });
-        return null;
+        return collection;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUserName();
+        return user.getUserEmail();
     }
 
     // 계정만료

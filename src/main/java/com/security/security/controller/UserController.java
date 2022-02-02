@@ -18,7 +18,6 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity signUpUser(User user) {
-        System.out.println("controller user 26line : " + user);
         return userService.signUpUser(user);
     }
 

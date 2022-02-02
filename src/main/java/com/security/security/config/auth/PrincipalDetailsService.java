@@ -26,9 +26,6 @@ public class PrincipalDetailsService implements UserDetailsService {
         try{
             user = userMapper.checkUserId(username);
             System.out.println("service principal password 27line : " + user);
-            if (user != null) {
-                return new PrincipalDetails(user);
-            }
         }catch (Exception e){
             e.printStackTrace();
         }
