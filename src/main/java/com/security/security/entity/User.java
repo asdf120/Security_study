@@ -11,6 +11,7 @@ public class User {
     private String userPw;
     private String userName;
     private String userPhone;
+    private String userRole;
     private String userCreateDate;
 
 }

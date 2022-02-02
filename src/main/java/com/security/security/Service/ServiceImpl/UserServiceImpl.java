@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> dataMap = new HashMap<>();
         int result = 0;
         try {
+            user.setUserRole("ROLE_USER");
             user.setUserPw(passwordEncoder.encode(user.getUserPw()));
             result = userMapper.signUpUser(user);
             dataMap.put("result", result);

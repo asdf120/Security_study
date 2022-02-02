@@ -4,9 +4,9 @@
 
     <insert id="signUpUser" parameterType="User">
       INSERT INTO user
-             (user_email, user_pw, user_name, user_phone, user_create_date)
+             (user_email, user_pw, user_name, user_phone, user_role, user_create_date)
       VALUES
-            (#{userEmail}, #{userPw}, #{userName}, #{userPhone}, NOW())
+            (#{userEmail}, #{userPw}, #{userName}, #{userPhone}, #{userRole}, NOW())
     </insert>
     
     <select id="checkUserId" parameterType="String" resultType="User">
