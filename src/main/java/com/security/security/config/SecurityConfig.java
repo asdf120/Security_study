@@ -1,8 +1,7 @@
 package com.security.security.config;
 
-import com.security.security.Service.oauth.PrincipalOauth2UserService;
+import com.security.security.config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -24,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     private final PrincipalOauth2UserService principalOauth2UserService;
 
     @Override
@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .passwordParameter("userPw")
                     .defaultSuccessUrl("/")
                 .and()
-                .oauth2Login()
+                .oauth2Login()  // 액세스토큰 + 사용자프로필정보를 한번에 받아옴
                 .defaultSuccessUrl("/social-success")
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);	// oauth2 로그인에 성공하면, 유저 데이터를 가지고 우리가 생성한

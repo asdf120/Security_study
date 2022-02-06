@@ -21,6 +21,9 @@ public class User implements UserDetails {
     private String userRole;
     private String userCreateDate;
 
+    private String provider;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collection = new ArrayList<>();
