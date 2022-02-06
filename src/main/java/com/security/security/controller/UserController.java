@@ -1,6 +1,7 @@
 package com.security.security.controller;
 
 import com.security.security.Service.ServiceImpl.UserServiceImpl;
+import com.security.security.config.auth.PrincipalDetails;
 import com.security.security.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,8 @@ public class UserController {
     @GetMapping("/social-success")
     public ResponseEntity socialSuccess(Authentication authentication) {
         System.out.println("user controller 26line 소셜 로그인: " + authentication.getName());
+        PrincipalDetails principalDetails =  (PrincipalDetails)authentication.getPrincipal();
+        System.out.println("controller user 27line authentication: " + principalDetails.getUser());
 
         return null;
     }

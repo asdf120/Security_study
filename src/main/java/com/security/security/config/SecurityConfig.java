@@ -1,5 +1,6 @@
 package com.security.security.config;
 
+import com.security.security.config.auth.PrincipalDetailsService;
 import com.security.security.config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 
     private final PrincipalOauth2UserService principalOauth2UserService;
 

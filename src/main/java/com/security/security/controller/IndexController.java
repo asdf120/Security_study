@@ -1,7 +1,6 @@
 package com.security.security.controller;
 
 import com.security.security.config.auth.PrincipalDetails;
-import com.security.security.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @GetMapping("/")
-    public ResponseEntity index(@AuthenticationPrincipal User user){
-        System.out.println("controller index 19line : " + user);
+    public ResponseEntity index(@AuthenticationPrincipal PrincipalDetails userDetails, Authentication authentication){
+        System.out.println("controller index 18line : " + userDetails.getUser());
         return new ResponseEntity("오케", HttpStatus.OK);
     }
 
