@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/")
                 .and()
                 .oauth2Login()  // 액세스토큰 + 사용자프로필정보를 한번에 받아옴
-                .defaultSuccessUrl("/social-success")
+                .defaultSuccessUrl("/")
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);	// oauth2 로그인에 성공하면, 유저 데이터를 가지고 우리가 생성한
     }

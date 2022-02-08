@@ -4,9 +4,11 @@ import com.security.security.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 // 시큐리티가 /login을 주소 요청이 오면 낚아채서 로그인을 진행
 // 로그인을 진행이 완료가 되면 시큐리티 session을 만들어줌. (Security ContextHolder)
@@ -17,12 +19,20 @@ import java.util.Collection;
 // Security Session => Authentication => UserDetails(PrincipalDetails)
 
 @Data
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private User user; // 컴포지션
+    private Map<String,Object> attributes;
 
+    // 일반 로그인
     public PrincipalDetails(User user) {
         this.user = user;
+    }
+
+    // Oauth 로그인
+    public PrincipalDetails(User user, Map<String,Object> attributes) {
+        this.user = user;
+        this.attributes = attributes;
     }
 
     // 해당 유저의 권한을 리턴
@@ -46,6 +56,16 @@ public class PrincipalDetails implements UserDetails {
     @Override
     public String getUsername() {
         return user.getUserEmail();
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    @Override
+    public String getName() {
+        return (String)attributes.get("sub");
     }
 
     // 계정만료

@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @GetMapping("/")
-    public ResponseEntity index(@AuthenticationPrincipal PrincipalDetails userDetails, Authentication authentication){
-        System.out.println("controller index 18line : " + userDetails.getUser());
+    public ResponseEntity index(@AuthenticationPrincipal PrincipalDetails user, Authentication authentication){
+        System.out.println("controller index 18line : " + user.getUser());
+        System.out.println("controller index 18line : " + user.getAttributes());
         return new ResponseEntity("오케", HttpStatus.OK);
     }
 
