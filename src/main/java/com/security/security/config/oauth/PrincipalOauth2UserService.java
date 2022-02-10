@@ -1,5 +1,6 @@
 package com.security.security.config.oauth;
 
+import com.security.security.config.auth.OAuthAttributes;
 import com.security.security.config.auth.PrincipalDetails;
 import com.security.security.entity.User;
 import com.security.security.mapper.UserMapper;
@@ -29,12 +30,21 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
         // 회원가입
-        String provider = userRequest.getClientRegistration().getRegistrationId();    // 구글
-        String providerId = oAuth2User.getAttribute("sub");
-        String userName = provider + "_" + providerId;  // ex) google_1234567
-        String userEmail = oAuth2User.getAttribute("email");
+        String provider = userRequest.getClientRegistration().getRegistrationId();
+        String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
+        OAuthAttributes attributes = OAuthAttributes.of(provider, userNameAttributeName, oAuth2User.getAttributes());
+
+        String providerId = "";
+        String userName = attributes.getName();
+        String userEmail = provider+"_"+attributes.getEmail();
         String userPassword = passwordEncoder.encode("social");
         String userRole = "ROLE_USER";
+
+        if(provider.equals("google")){
+            providerId  = (String)attributes.getAttributes().get("sub");
+        }else{
+            providerId = String.valueOf(attributes.getAttributes().get("id"));
+        }
 
         User user = new User();
         try {

@@ -65,7 +65,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     @Override
     public String getName() {
-        return (String)attributes.get("sub");
+        return null;
     }
 
     // 계정만료
